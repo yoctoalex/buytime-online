@@ -58,6 +58,6 @@ docker tag buytime-db:v1 interestingstorage/buytime-db:v1
 docker push interestingstorage/buytime-db:v1
 
 cd ../f5-buytime-rp
-docker build --tag buytime-rp:v1 .
-docker tag buytime-rp:v1 interestingstorage/buytime-rp:v1
-docker push interestingstorage/buytime-rp:v1
+docker build --tag buytime-rp:v2 .
+docker tag buytime-rp:v2 interestingstorage/buytime-rp:v2
+docker push interestingstorage/buytime-rp:v2
