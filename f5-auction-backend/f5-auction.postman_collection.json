@@ -1,0 +1,1015 @@
+{
+	"info": {
+		"_postman_id": "8a7ef1f7-073e-40ad-b136-63fae47d10f8",
+		"name": "f5-auction",
+		"description": "Auction sample API. API has lots of vulerabilities. This is for demo purposes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa5a207f-9f4a-44e6-8f69-d808b09ea4d4",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('bearer', jsonData.bearer);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"my@email.com\",\n    \"login\": \"user1\",\n    \"name\": \"Test User 1\",\n    \"password\": \"123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register the user",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"my@email.com\",\n    \"login\": \"user1\",\n    \"name\": \"Test User 1\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/api/v1/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-t3l5MnoGqvqPs6s0Q7G16lvCFbg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2019 11:56:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bearer\": \"d5d1fab0-bb65-11e9-af91-97348ea68e38\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Authenticate the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85b53000-0fb7-4c37-9281-bac175b2cd66",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('bearer', jsonData.bearer);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"user1\",\n\t\"password\": \"123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Authenticate the user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"user1\",\n\t\"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/api/v1/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-nqKD/CbjIXvTKQQHl3VdZVk2V+k\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:30:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bearer\": \"8c58dfa0-ba77-11e9-8249-379f06b9a37e\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create auction item -- lot",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"description": "Authentication header",
+						"key": "BEARER",
+						"type": "text",
+						"value": "{{bearer}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"My Super Lot\",\n\t\"description\": \"My Super Lot Description\",\n\t\"auction_ends\": \"2020-08-09 04:10:13\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/lot",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"lot"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create auction item -- lot",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Authentication header",
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My Super Lot\",\n\t\"description\": \"My Super Lot Description\",\n\t\"auction_ends\": \"2019-08-09 04:10:13\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/api/v1/lot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"lot"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-sorpC5HMqBoiAiHrNCxOntNmZBk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:32:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"results\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 4,\n        \"info\": \"\",\n        \"serverStatus\": 2,\n        \"warningStatus\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all available items",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "BEARER",
+						"value": "{{bearer}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/lot/all?page=4&pageSize=22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"lot",
+						"all"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "4"
+						},
+						{
+							"key": "pageSize",
+							"value": "22"
+						}
+					]
+				},
+				"description": "Returns array with information of all lots available"
+			},
+			"response": [
+				{
+					"name": "Get all available items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "BEARER",
+								"value": "{{bearer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9192/api/v1/lot/all?page=4&pageSize=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"lot",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7482"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d3a-DHDaI0S1AXPXAbBNyuNyHK+L/iM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2019 14:15:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 13,\n            \"date\": \"1985-09-07T20:57:14.000Z\",\n            \"auction_ends\": \"1981-07-14T21:37:44.000Z\",\n            \"title\": \"Et eaque id rerum est et expedita.\",\n            \"description\": \"Cumque qui iusto sed. Ea molestiae quam vero ut. Delectus molestiae et a aut nihil. Cupiditate et quis enim suscipit a iusto.\",\n            \"userId\": 13,\n            \"maxBid\": 989.56,\n            \"user\": {\n                \"id\": 13,\n                \"date\": \"2015-10-18T00:59:11.000Z\",\n                \"login\": \"xsenger\",\n                \"email\": \"elijah75@example.com\",\n                \"name\": \"Greyson Dach\"\n            }\n        },\n        {\n            \"id\": 14,\n            \"date\": \"2008-04-23T07:18:06.000Z\",\n            \"auction_ends\": \"2017-01-19T12:53:46.000Z\",\n            \"title\": \"Aut aut eligendi beatae facere minus rerum quidem.\",\n            \"description\": \"Et saepe commodi consequuntur non. Aspernatur ea quo ad ipsam vel nobis.\\nError laudantium quia odit est eum. Rem itaque soluta et nisi placeat quidem est. A rerum voluptatibus quam hic.\",\n            \"userId\": 14,\n            \"maxBid\": 789.67,\n            \"user\": {\n                \"id\": 14,\n                \"date\": \"1981-06-15T16:09:17.000Z\",\n                \"login\": \"kim14\",\n                \"email\": \"mac.koepp@example.com\",\n                \"name\": \"Dr. Genevieve Runolfsdottir Jr.\"\n            }\n        },\n        {\n            \"id\": 15,\n            \"date\": \"1991-11-15T06:04:54.000Z\",\n            \"auction_ends\": \"1976-02-23T20:52:51.000Z\",\n            \"title\": \"Aliquid nostrum magnam nihil ipsam deleniti.\",\n            \"description\": \"Inventore eum totam ratione neque vitae ut aut. Ut ut velit officia qui qui. Temporibus repudiandae veritatis magnam sequi.\",\n            \"userId\": 15,\n            \"maxBid\": 931.91,\n            \"user\": {\n                \"id\": 15,\n                \"date\": \"2006-07-30T20:31:42.000Z\",\n                \"login\": \"amani41\",\n                \"email\": \"leilani.paucek@example.net\",\n                \"name\": \"Luna Ondricka\"\n            }\n        },\n        {\n            \"id\": 16,\n            \"date\": \"2001-11-30T09:00:29.000Z\",\n            \"auction_ends\": \"2010-03-30T06:39:11.000Z\",\n            \"title\": \"Animi vitae accusantium voluptas rerum quia dolorem et.\",\n            \"description\": \"Maiores exercitationem animi est ratione possimus odit voluptatem. At doloribus ipsum consequatur nisi omnis.\",\n            \"userId\": 16,\n            \"maxBid\": 905.02,\n            \"user\": {\n                \"id\": 16,\n                \"date\": \"1979-09-27T14:26:50.000Z\",\n                \"login\": \"jerod49\",\n                \"email\": \"enola.cronin@example.com\",\n                \"name\": \"Ms. Mollie Moen II\"\n            }\n        },\n        {\n            \"id\": 17,\n            \"date\": \"1971-05-10T21:26:47.000Z\",\n            \"auction_ends\": \"2000-01-06T16:15:45.000Z\",\n            \"title\": \"Labore in laudantium error et sequi.\",\n            \"description\": \"Repellat facilis molestiae recusandae quidem sed. Natus omnis rerum rerum aperiam corrupti laboriosam. Exercitationem sit incidunt dolores quaerat.\",\n            \"userId\": 17,\n            \"maxBid\": 789.43,\n            \"user\": {\n                \"id\": 17,\n                \"date\": \"2011-09-20T00:21:36.000Z\",\n                \"login\": \"johan42\",\n                \"email\": \"osvaldo.hessel@example.net\",\n                \"name\": \"Richard D'Amore\"\n            }\n        },\n        {\n            \"id\": 18,\n            \"date\": \"1972-07-07T13:48:18.000Z\",\n            \"auction_ends\": \"1982-02-26T09:01:15.000Z\",\n            \"title\": \"Qui ut error quis aliquid non ut adipisci laborum.\",\n            \"description\": \"Minus quia voluptatem sunt atque. Ut expedita eum sed libero unde placeat. Totam ad reprehenderit et dolorem nam natus. Non ipsa labore inventore est sed.\",\n            \"userId\": 18,\n            \"maxBid\": 965.53,\n            \"user\": {\n                \"id\": 18,\n                \"date\": \"1977-10-07T19:55:44.000Z\",\n                \"login\": \"lionel.howell\",\n                \"email\": \"irath@example.org\",\n                \"name\": \"Mr. Jaylan Dare Jr.\"\n            }\n        },\n        {\n            \"id\": 19,\n            \"date\": \"1995-08-07T00:49:46.000Z\",\n            \"auction_ends\": \"2019-03-05T12:09:47.000Z\",\n            \"title\": \"Expedita maxime cum quod modi esse nihil.\",\n            \"description\": \"Blanditiis placeat aut nam eos fugiat. Explicabo id cum enim ea odit. Est sunt sapiente atque impedit.\",\n            \"userId\": 19,\n            \"maxBid\": 865.38,\n            \"user\": {\n                \"id\": 19,\n                \"date\": \"1978-07-21T03:00:42.000Z\",\n                \"login\": \"amos39\",\n                \"email\": \"zbernier@example.org\",\n                \"name\": \"Garry Carroll\"\n            }\n        },\n        {\n            \"id\": 20,\n            \"date\": \"1994-07-31T18:05:31.000Z\",\n            \"auction_ends\": \"1973-11-18T07:43:00.000Z\",\n            \"title\": \"Enim non non dolores est dolores velit.\",\n            \"description\": \"Natus quo voluptatem odio ut cupiditate optio. Asperiores omnis corrupti quia. Praesentium natus earum molestiae mollitia.\",\n            \"userId\": 20,\n            \"maxBid\": 983.57,\n            \"user\": {\n                \"id\": 20,\n                \"date\": \"1993-06-24T20:30:31.000Z\",\n                \"login\": \"rprohaska\",\n                \"email\": \"breanna.treutel@example.com\",\n                \"name\": \"Dr. Keven Towne PhD\"\n            }\n        },\n        {\n            \"id\": 21,\n            \"date\": \"1999-02-25T19:53:55.000Z\",\n            \"auction_ends\": \"1992-07-02T21:41:20.000Z\",\n            \"title\": \"Nesciunt nihil sed dolorem cum in sint.\",\n            \"description\": \"Accusamus non molestias consequuntur et dolorem quia. Necessitatibus maxime sint in laboriosam.\",\n            \"userId\": 21,\n            \"maxBid\": 762.71,\n            \"user\": {\n                \"id\": 21,\n                \"date\": \"1982-09-12T07:58:18.000Z\",\n                \"login\": \"davis.mohammad\",\n                \"email\": \"sroberts@example.com\",\n                \"name\": \"Prof. Durward Wunsch IV\"\n            }\n        },\n        {\n            \"id\": 22,\n            \"date\": \"1984-03-19T14:16:14.000Z\",\n            \"auction_ends\": \"1979-08-19T12:54:45.000Z\",\n            \"title\": \"Placeat dolores tenetur corporis quis magnam ad.\",\n            \"description\": \"Molestiae quo amet magni nihil. Autem est mollitia tempore sapiente explicabo quia ipsum. Sint occaecati nam ut quos id odio et. Non laboriosam et laborum molestiae voluptates quasi aspernatur.\",\n            \"userId\": 22,\n            \"maxBid\": 759.97,\n            \"user\": {\n                \"id\": 22,\n                \"date\": \"1997-05-13T14:36:30.000Z\",\n                \"login\": \"pritchie\",\n                \"email\": \"opal75@example.org\",\n                \"name\": \"Freeda Weissnat\"\n            }\n        },\n        {\n            \"id\": 23,\n            \"date\": \"2012-07-02T23:21:37.000Z\",\n            \"auction_ends\": \"1983-11-29T05:01:11.000Z\",\n            \"title\": \"Aut porro assumenda enim excepturi voluptate.\",\n            \"description\": \"Tempore nihil aut aliquam impedit rerum nisi vel. Fugiat eligendi alias odio accusamus. Ipsam magnam quo aut. Recusandae odio perspiciatis possimus et. Aut molestias commodi iure eum quos laudantium.\",\n            \"userId\": 23,\n            \"maxBid\": 935.13,\n            \"user\": {\n                \"id\": 23,\n                \"date\": \"1982-06-27T11:53:46.000Z\",\n                \"login\": \"rrenner\",\n                \"email\": \"donato.o'reilly@example.org\",\n                \"name\": \"Fleta Cartwright\"\n            }\n        },\n        {\n            \"id\": 24,\n            \"date\": \"1988-01-22T14:29:44.000Z\",\n            \"auction_ends\": \"1974-12-12T17:26:48.000Z\",\n            \"title\": \"Maiores nihil suscipit sunt.\",\n            \"description\": \"Repellendus qui eos consequatur aut tenetur. Est pariatur illo eligendi nihil id. Enim a ipsam rerum ut consequatur dolorem aut. Officiis iusto libero odio quo quibusdam ut rerum.\",\n            \"userId\": 24,\n            \"maxBid\": 971.22,\n            \"user\": {\n                \"id\": 24,\n                \"date\": \"1988-09-18T06:36:54.000Z\",\n                \"login\": \"marques24\",\n                \"email\": \"rgreenfelder@example.com\",\n                \"name\": \"Lonnie Cremin\"\n            }\n        },\n        {\n            \"id\": 25,\n            \"date\": \"2018-01-31T08:29:59.000Z\",\n            \"auction_ends\": \"1971-02-14T11:11:52.000Z\",\n            \"title\": \"Deleniti ducimus tenetur qui qui voluptates est omnis.\",\n            \"description\": \"Praesentium sunt ipsum dolorem nulla eveniet. Error dolor placeat mollitia saepe commodi. Molestiae ab autem tempore. Eos commodi expedita suscipit et impedit dolorem.\",\n            \"userId\": 25,\n            \"maxBid\": 950.34,\n            \"user\": {\n                \"id\": 25,\n                \"date\": \"1993-09-10T08:07:09.000Z\",\n                \"login\": \"viva63\",\n                \"email\": \"reilly.fadel@example.org\",\n                \"name\": \"Prof. Emmalee Hintz PhD\"\n            }\n        },\n        {\n            \"id\": 26,\n            \"date\": \"2009-02-07T17:35:27.000Z\",\n            \"auction_ends\": \"1988-07-15T06:28:18.000Z\",\n            \"title\": \"Omnis omnis placeat saepe sit natus dolorum ad.\",\n            \"description\": \"Est itaque doloremque dolorem. Accusamus esse voluptatum et reiciendis. Quo reprehenderit id dolor reiciendis sed aliquam neque placeat.\",\n            \"userId\": 26,\n            \"maxBid\": 850.53,\n            \"user\": {\n                \"id\": 26,\n                \"date\": \"2009-03-31T11:35:23.000Z\",\n                \"login\": \"mosciski.rigoberto\",\n                \"email\": \"bswift@example.org\",\n                \"name\": \"Leonie Collier\"\n            }\n        },\n        {\n            \"id\": 27,\n            \"date\": \"1985-10-28T04:39:03.000Z\",\n            \"auction_ends\": \"1981-03-25T20:58:31.000Z\",\n            \"title\": \"Aut ut ut commodi neque accusamus quibusdam.\",\n            \"description\": \"Ratione aut est molestias laboriosam nulla dolores. Consequatur ullam et dicta ut esse laborum culpa. Vero qui nisi aliquid rerum occaecati ab voluptatum. Animi et et deserunt ut labore neque.\",\n            \"userId\": 27,\n            \"maxBid\": 958.38,\n            \"user\": {\n                \"id\": 27,\n                \"date\": \"1973-10-22T22:22:29.000Z\",\n                \"login\": \"roberts.yazmin\",\n                \"email\": \"mfay@example.com\",\n                \"name\": \"Dixie Lueilwitz\"\n            }\n        },\n        {\n            \"id\": 28,\n            \"date\": \"1995-07-26T11:01:06.000Z\",\n            \"auction_ends\": \"2011-01-22T13:07:54.000Z\",\n            \"title\": \"Et aut vel molestiae velit optio nostrum.\",\n            \"description\": \"Sapiente veritatis dignissimos aut sit. Sunt dolor laborum impedit rerum.\\nQuam amet quis aut aut. Expedita quae aut corrupti. Doloribus dolorem qui omnis.\",\n            \"userId\": 28,\n            \"maxBid\": 760.76,\n            \"user\": {\n                \"id\": 28,\n                \"date\": \"1971-11-09T08:53:27.000Z\",\n                \"login\": \"harrison09\",\n                \"email\": \"fratke@example.net\",\n                \"name\": \"Prof. Hudson Krajcik IV\"\n            }\n        }\n    ],\n    \"totalPages\": 2500\n}"
+				}
+			]
+		},
+		{
+			"name": "Bid on an item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "BEARER",
+						"value": "{{bearer}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lotId\": 1,\n\t\"amount\": 9.99\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/bid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"bid"
+					]
+				},
+				"description": "Puts bid from authenticated user to a lot. User is determined by the bearer token"
+			},
+			"response": [
+				{
+					"name": "Bid on an item -- auction is ended",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"lotId\": 1,\n\t\"amount\": 9.99\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/api/v1/bid?BEARER={{bearer}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"bid"
+							],
+							"query": [
+								{
+									"key": "BEARER",
+									"value": "{{bearer}}"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "19"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"13-42ARv83gcUhDFSb0TmYHe4XrXZw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:35:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Auction is finished"
+				},
+				{
+					"name": "Bid on an item",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"lotId\": 6,\n\t\"amount\": 9.99\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9192/api/v1/bid?BEARER={{bearer}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"bid"
+							],
+							"query": [
+								{
+									"key": "BEARER",
+									"value": "{{bearer}}"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-zM1GCKV72hthT8Y9O4m4JequhZ4\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:35:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"results\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 5,\n        \"info\": \"\",\n        \"serverStatus\": 2,\n        \"warningStatus\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get lot information with all its bids",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "BEARER",
+						"type": "text",
+						"value": "{{bearer}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/lot/one?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"lot",
+						"one"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "returns obkect with information about lot and its bids"
+			},
+			"response": [
+				{
+					"name": "Get lot information with all its bids",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9192/api/v1/lot/one?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"lot",
+								"one"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1052"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41c-3kGhFJU8KxhiNhux05iq614L80g\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2019 12:28:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"lot\": {\n        \"id\": 1,\n        \"date\": \"2019-08-09T04:10:45.000Z\",\n        \"auction_ends\": \"2019-08-09T01:10:13.000Z\",\n        \"title\": \"My Super Lot\",\n        \"description\": \"My Super Lot Description\",\n        \"userId\": 1,\n        \"maxBid\": 9.99\n    },\n    \"user\": {\n        \"id\": 1,\n        \"date\": \"2019-08-09T04:08:32.000Z\",\n        \"login\": \"user1\",\n        \"email\": \"my@email.com\",\n        \"name\": \"Test User 1\"\n    },\n    \"bids\": [\n        {\n            \"id\": 1,\n            \"date\": \"2019-08-09T04:11:09.000Z\",\n            \"amount\": 9.99,\n            \"lotId\": 1,\n            \"userId\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"date\": \"2019-08-09T04:08:32.000Z\",\n                \"login\": \"user1\",\n                \"email\": \"my@email.com\",\n                \"name\": \"Test User 1\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"date\": \"2019-08-09T04:11:11.000Z\",\n            \"amount\": 9.99,\n            \"lotId\": 1,\n            \"userId\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"date\": \"2019-08-09T04:08:32.000Z\",\n                \"login\": \"user1\",\n                \"email\": \"my@email.com\",\n                \"name\": \"Test User 1\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"date\": \"2019-08-09T04:19:37.000Z\",\n            \"amount\": 9.99,\n            \"lotId\": 1,\n            \"userId\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"date\": \"2019-08-09T04:08:32.000Z\",\n                \"login\": \"user1\",\n                \"email\": \"my@email.com\",\n                \"name\": \"Test User 1\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"date\": \"2019-08-09T04:19:38.000Z\",\n            \"amount\": 9.99,\n            \"lotId\": 1,\n            \"userId\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"date\": \"2019-08-09T04:08:32.000Z\",\n                \"login\": \"user1\",\n                \"email\": \"my@email.com\",\n                \"name\": \"Test User 1\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get user info by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "BEARER",
+						"type": "text",
+						"value": "{{bearer}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/user?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Returns user information by id"
+			},
+			"response": [
+				{
+					"name": "Get user info by id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9192/api/v1/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"77-TcQ7l82FIybmy7JDoZaJppu3D/0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:45:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"date\": \"2019-08-09T04:08:32.000Z\",\n    \"login\": \"user1\",\n    \"email\": \"my@email.com\",\n    \"name\": \"Test User 1\",\n    \"password\": \"123\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "BEARER",
+						"type": "text",
+						"value": "{{bearer}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/user/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"logout"
+					]
+				},
+				"description": "Returns user information by id"
+			},
+			"response": [
+				{
+					"name": "Logout",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9192/api/v1/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2019 11:57:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				},
+				{
+					"name": "Get user info by id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "BEARER",
+								"type": "text",
+								"value": "{{bearer}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9192/api/v1/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"77-TcQ7l82FIybmy7JDoZaJppu3D/0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Aug 2019 07:45:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"date\": \"2019-08-09T04:08:32.000Z\",\n    \"login\": \"user1\",\n    \"email\": \"my@email.com\",\n    \"name\": \"Test User 1\",\n    \"password\": \"123\"\n}"
+				}
+			]
+		}
+	]
+}

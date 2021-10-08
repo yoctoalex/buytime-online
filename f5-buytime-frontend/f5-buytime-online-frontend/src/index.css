@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/montserrat/montserrat-regular-webfont.woff2') format('woff2'),
+  url('fonts/montserrat/montserrat-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserratsemibold';
+  src: url('fonts/montserrat/montserrat-semibold-webfont.woff2') format('woff2'),
+  url('fonts/montserrat/montserrat-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserratmedium';
+  src: url('fonts/montserrat/montserrat-medium-webfont.woff2') format('woff2'),
+  url('fonts/montserrat/montserrat-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+code {
+  font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+  font-family: 'Montserrat', sans-serif;
+}
+button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+span.ant-calendar-picker {
+  margin-bottom: 30px;
+  width: 100%;
+  color: #848484;
+}
+
+input.ant-calendar-picker-input.ant-input {
+  border: 1px solid #848484;
+  font-size: 16px;
+  line-height: 40px;
+  color: #848484;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+

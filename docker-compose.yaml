@@ -1,0 +1,61 @@
+version: '3.7'
+
+services:
+  reverse-proxy:
+    build:
+      context: ./f5-buytime-rp
+    # image: interestingstorage/buytime-rp:v2
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    build:
+      context: ./f5-buytime-frontend
+      args:
+        REACT_APP_TITLE: "BuyTime Online"
+        REACT_APP_FAVICON: "favicon_b.ico"
+        REACT_APP_COUNTRY_FLAG: "US"
+        REACT_APP_MAP_BG: "map.png"
+        REACT_APP_META_FROM_URL: "true"
+        REACT_APP_GEO_LOCATION_NEAREST_STORE: "api/v2/geo-services/nearest-store/zip"
+        REACT_APP_GEO_LOCATION_USER_ZIPSTORES: "api/v2/geo-services/nearest-store/geo"
+        REACT_APP_GEO_LOCATION_ZIP_INFO: "api/v2/us-zip"
+        REACT_APP_NO_NEAREST_STORE: "false"
+    # image: interestingstorage/buytime-frontend:v1
+    restart: always
+    environment: 
+      PORT: 80
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./f5-auction-backend
+    # image: interestingstorage/buytime-backend:v1
+    restart: always
+    environment: 
+      MYSQL_HOST: "database"
+      PORT: 80
+    depends_on:
+      - database
+
+  database:
+    build:
+      context: ./f5-nearest-store-db
+    # image: interestingstorage/buytime-db:v1
+    restart: always
+
+  find-a-store:
+    build:
+      context: ./f5-nearest-store-backend
+    environment: 
+      MYSQL_HOST: "database"
+      MYSQL_DB: store_location
+    # image: interestingstorage/buytime-find-a-store-service:v1
+    restart: always
+    ports:
+      - 9339:9339
