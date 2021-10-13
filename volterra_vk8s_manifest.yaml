@@ -1,0 +1,193 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dockerio
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJkb2NrZXIuaW8iOnsidXNlcm5hbWUiOiJpbnRlcmVzdGluZ3N0b3JhZ2UiLCJwYXNzd29yZCI6IjMwZTRjYThmLWEwMzUtNDRkNS1hZDQyLWY5NDg3YjcwMjFiNSIsImF1dGgiOiJhVzUwWlhKbGMzUnBibWR6ZEc5eVlXZGxPak13WlRSallUaG1MV0V3TXpVdE5EUmtOUzFoWkRReUxXWTVORGczWWpjd01qRmlOUT09In19fQ==
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-reverse-proxy
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-reverse-proxy
+  ports:
+    - name: http
+      port: 80
+      targetPort: 18080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-reverse-proxy
+spec:
+  selector:
+    matchLabels:
+      app: buytime-reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: buytime-reverse-proxy
+    spec:
+      containers:
+        - name: server
+          image: interestingstorage/buytime-rp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 18080
+      imagePullSecrets:
+        - name: dockerio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-database
+  annotations:
+    ves.io/workload-flavor: ves-io-large
+spec:
+  selector:
+    matchLabels:
+      app: buytime-database
+  template:
+    metadata:
+      labels:
+        app: buytime-database
+    spec:
+      containers:
+        - name: server
+          image: interestingstorage/buytime-db:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+      imagePullSecrets:
+        - name: dockerio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-database
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-database
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: server
+          image: interestingstorage/buytime-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9192
+          env:
+            - name: MYSQL_HOST
+              value: "buytime-database"
+      imagePullSecrets:
+        - name: dockerio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9192
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: server
+          image: interestingstorage/buytime-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: dockerio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: find-a-store-service
+spec:
+  selector:
+    matchLabels:
+      app: find-a-store-service
+  template:
+    metadata:
+      labels:
+        app: find-a-store-service
+    spec:
+      containers:
+        - name: server
+          image: docker.io/interestingstorage/buytime-find-a-store-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9339
+          env:
+            - name: MYSQL_HOST
+              value: "buytime-database"
+            - name: MYSQL_DB
+              value: "store_location"
+      imagePullSecrets:
+        - name: dockerio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: find-a-store-service
+spec:
+  type: ClusterIP
+  selector:
+    app: find-a-store-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9339
+---

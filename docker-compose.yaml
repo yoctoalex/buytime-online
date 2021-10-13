@@ -4,10 +4,10 @@ services:
   reverse-proxy:
     build:
       context: ./f5-buytime-rp
-    # image: interestingstorage/buytime-rp:v2
+    # image: interestingstorage/buytime-rp:latest
     restart: always
     ports:
-      - 80:80
+      - 80:18080
     depends_on:
       - backend
       - frontend
@@ -25,7 +25,7 @@ services:
         REACT_APP_GEO_LOCATION_USER_ZIPSTORES: "api/v2/geo-services/nearest-store/geo"
         REACT_APP_GEO_LOCATION_ZIP_INFO: "api/v2/us-zip"
         REACT_APP_NO_NEAREST_STORE: "false"
-    # image: interestingstorage/buytime-frontend:v1
+    # image: interestingstorage/buytime-frontend:latest
     restart: always
     environment: 
       PORT: 80
@@ -35,27 +35,28 @@ services:
   backend:
     build:
       context: ./f5-auction-backend
-    # image: interestingstorage/buytime-backend:v1
+    # image: interestingstorage/buytime-backend:latest
     restart: always
     environment: 
-      MYSQL_HOST: "database"
+      MYSQL_HOST: "buytime-database"
       PORT: 80
     depends_on:
-      - database
+      - buytime-database      
 
-  database:
+  buytime-database:
     build:
       context: ./f5-nearest-store-db
-    # image: interestingstorage/buytime-db:v1
+    # image: interestingstorage/buytime-db:latest
     restart: always
 
-  find-a-store:
+  find-a-store-service:
     build:
       context: ./f5-nearest-store-backend
     environment: 
-      MYSQL_HOST: "database"
+      MYSQL_HOST: "buytime-database"
       MYSQL_DB: store_location
-    # image: interestingstorage/buytime-find-a-store-service:v1
+      PORT: 80
+    # image: interestingstorage/buytime-find-a-store-service:latest
     restart: always
-    ports:
-      - 9339:9339
+    depends_on:
+      - buytime-database
