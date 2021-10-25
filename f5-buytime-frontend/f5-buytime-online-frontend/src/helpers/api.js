@@ -1,4 +1,4 @@
-export const SERVER_API = '';
+export const SERVER_API = process.env.REACT_APP_SERVER_API || '';
 
 export const GET_LOT_BY_ID = `${SERVER_API}/api/v1/lot/one?id=`;
 export const CREATE_BID = `${SERVER_API}/api/v1/bid`;
